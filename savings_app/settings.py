@@ -34,9 +34,10 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sessions',
+    'registration'
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# settings.py
+AUTHENTICATION_BACKENDS = [
+    'registration.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',  # keep the default backend for username/password
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
