@@ -26,7 +26,7 @@ Before you begin, ensure you have met the following requirements:
 First, clone the repository to your local machine:
 
 
-git clone https://github.com/Faisal-Abdo/Savings_App_Django.git
+git clone https://github.com/Faisal-Abdo/Savings_App_Django.git <br>
 cd Savings_App_Django
 
 ### 2. Create a Virtual Environment
