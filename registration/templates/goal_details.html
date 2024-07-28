@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Goal Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #eee;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ goal.goal_name }}</h1>
+    <p>Target Amount: {{ goal.target_amount }}</p>
+    <p>Target Date: {{ goal.target_date }}</p>
+    <p>Total Contributed: {{ total_contributed }}</p>
+    <h2>Contributions</h2>
+    <ul>
+        {% for contribution in contributions %}
+        <li>{{ contribution.date }} - {{ contribution.amount }} to {{ contribution.savings_goal.name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'contribute' %}">Back to Contribute</a>
+</body>
+</html>

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 
-from .models import SavingsGoal
+from .models import SavingsGoal, Contribution
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -19,3 +19,15 @@ class SavingsGoalForm(forms.ModelForm):
             'target_date': forms.DateInput(attrs={'type': 'date'}),
         }
 
+# Form for making a contribution to a savings goal
+class ContributionForm(forms.ModelForm):
+    class Meta:
+        model = Contribution
+        fields = ['savings_goal', 'amount']
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(ContributionForm, self).__init__(*args, **kwargs)
+        if user:
+            # Limit the savings goal choices to those belonging to the current user
+            self.fields['savings_goal'].queryset = SavingsGoal.objects.filter(user=user)
