@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .content {
+            padding-bottom: 50px; /* Space for the footer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{% block header %}My App{% endblock %}</h1>
+    </header>
+    
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        &copy; {{ year }} My App. All rights reserved.
+    </footer>
+</body>
+</html>

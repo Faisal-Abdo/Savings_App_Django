@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .goal {
+            background: #eee;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .goal h2 {
+            color: #007bff;
+        }
+        .goal p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Track Progress</h1>
+    <div class="goals">
+        {% if progress_data %}
+            {% for data in progress_data %}
+            <div class="goal">
+                <h2>{{ data.goal.name }}</h2> <!-- Display goal name -->
+                <p>Target Amount: {{ data.goal.target_amount }}</p> <!-- Display target amount -->
+                <p>Amount Saved: {{ data.total_contributed }}</p> <!-- Display total contributed -->
+                <p>Remaining Amount: {{ data.remaining_amount }}</p> <!-- Display remaining amount -->
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No goals found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Savings Goals</title>
+    <style>
+        /* Basic styling for the form */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button.delete {
+            background-color: #f44336;
+        }
+        .form-group button:hover {
+            opacity: 0.8;
+        }
+        .form-group button.delete:hover {
+            opacity: 0.8;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{% if goal %}Edit{% else %}Create{% endif %} Savings Goal</h1>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if goal %}
+                <button type="submit" name="delete" class="delete">Delete</button>
+            {% endif %}
+            <button type="submit">{% if goal %}Update{% else %}Create{% endif %}</button>
+        </form>
+
+        <h2>Your Goals</h2>
+    <ul>
+        {% for goal in goals %}
+        <li>
+            {{ goal.goal_name }} - {{ goal.target_amount }} - {{ goal.target_date }}
+            <a href="{% url 'manage_savings_goal' id=1 %}">Edit</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    </div>
+
+    
+
+</body>
+</html>

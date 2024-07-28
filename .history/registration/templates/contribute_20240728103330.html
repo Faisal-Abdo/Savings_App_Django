@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contribute to Savings Goals</title>
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .goal-list, .contribution-list {
+            margin-top: 20px;
+        }
+        .goal-item {
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #4caf50;
+            width: {{ goal.contributed_percent }}%;
+        }
+        .total-contributed {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Contribute to Savings Goals</h1>
+        <!-- Form for making contributions -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Contribute</button>
+        </form>
+        <div class="goal-list">
+            <h2>Your Goals</h2>
+            <ul>
+                {% for goal in goals %}
+                <li class="goal-item">
+                    <strong>{{ goal.goal_name }}</strong> - {{ goal.target_amount }} - {{ goal.target_date }}
+                    <div class="progress-bar" style="width: {{ goal.contributions.aggregate(total=models.Sum('amount'))|default:0 / goal.target_amount * 100 }}%;"></div>
+                    <a href="{% url 'goal_details' goal.id %}">Details</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="contribution-list">
+            <h2>Recent Contributions</h2>
+            <ul>
+                {% for contribution in contributions %}
+                <li>{{ contribution.date }} - {{ contribution.amount }} to {{ contribution.savings_goal.goal_name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

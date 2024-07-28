@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .goal {
+            background: #eee;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .goal h2 {
+            color: #007bff;
+        }
+        .goal p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Track Progress</h1>
+    <div class="goals">
+        {% for goal in goals %}
+        <div class="goal">
+            <h2>{{ goal.name }}</h2> <!-- Display goal name -->
+            <p>Target Amount: {{ goal.target_amount }}</p> <!-- Display target amount -->
+            <p>Amount Saved: {{ goal.total_contributed }}</p> <!-- Display total contributed -->
+            <p>Remaining Amount: {{ goal.target_amount|floatformat:2|add:goal.total_contributed|floatformat:2 }}</p> <!-- Display remaining amount -->
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

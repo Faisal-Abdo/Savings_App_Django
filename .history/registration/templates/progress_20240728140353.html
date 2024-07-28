@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Progress</title>
+    <!-- Removed inline CSS causing issues for simplicity -->
+    <style>
+        .goal {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Track Progress</h1>
+    {% for goal in goals %}
+        <div class="goal">
+            <h2>{{ goal.name }}</h2>
+            <p>Target Amount: {{ goal.target_amount }}</p>
+            <p>Amount Saved: {{ goal.total_contributed }}</p>
+            <p>Remaining Amount: {{ goal.target_amount|floatformat:2|add:goal.total_contributed|floatformat:2 }}</p>
+            <div style="border: 1px solid #ccc; width: 100%;">
+                <div class="progress-bar" style="width: {{ goal.progress_percentage }}%;">
+                    {{ goal.progress_percentage }}%
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
