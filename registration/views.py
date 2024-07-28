@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import SavingsGoal, Contribution
 from .forms import SavingsGoalForm, ContributionForm
 from django.db import models
+from django.db.models import Sum
 
 # Create your views here.
 def home(request):
@@ -99,3 +100,26 @@ def goal_details(request, goal_id):
     contributions = Contribution.objects.filter(savings_goal=goal).order_by('-date')
     total_contributed = contributions.aggregate(total=models.Sum('amount'))['total'] or 0
     return render(request, 'goal_details.html', {'goal': goal, 'contributions': contributions, 'total_contributed': total_contributed})
+
+def progress(request):
+    # Fetching all savings goals for the logged-in user
+    goals = SavingsGoal.objects.filter(user=request.user)
+    progress_data = []
+    
+    for goal in goals:
+        # Here is Calculating the total contributions made towards the goal
+        total_contributed = goal.contributions.aggregate(total=Sum('amount'))['total'] or 0
+        # Calculates the remaining amount needed to reach the goal
+        remaining_amount = goal.target_amount - total_contributed
+        # Calculates the progress percentage
+        progress_percentage = (total_contributed / goal.target_amount) * 100 if goal.target_amount > 0 else 0
+        
+        # Appendes the goal's progress data to the list
+        progress_data.append({
+            'goal': goal,
+            'total_contributed': total_contributed,
+            'remaining_amount': remaining_amount,
+            'progress_percentage': progress_percentage,
+        })
+       
+    return render(request, 'progress.html', {'progress_data': progress_data})
