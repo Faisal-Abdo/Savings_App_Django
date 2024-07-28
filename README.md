@@ -30,7 +30,7 @@ git clone https://github.com/Faisal-Abdo/Savings_App_Django.git <br>
 cd Savings_App_Django
 
 ### 2. Create a Virtual Environment
-Create a virtual environment to manage project dependencies:
+Create a virtual environment to manage project dependencies: <br>
 python -m venv venv 
 
 ### 3. Activate the Virtual Environment
@@ -43,16 +43,16 @@ On macOS and Linux:
 source venv/bin/activate
 
 ### 4. Install Dependencies
-Install the project dependencies from requirements.txt:
+Install the project dependencies from requirements.txt: <br>
 pip install -r requirements.txt
 
 ### 5. Set Up the Database
-Run the following commands to set up the database:
-python manage.py makemigrations
+Run the following commands to set up the database:<br>
+python manage.py makemigrations <br>
 python manage.py migrate
 
 ### 6. Run the Development Server
-Start the Django development server:
+Start the Django development server: <br>
 python manage.py runserver
 
 Open your web browser and go to http://127.0.0.1:8000 to see the application running.
