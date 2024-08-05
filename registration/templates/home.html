@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
@@ -26,16 +27,63 @@
             margin-left: 15px;
         }
         .header a:hover {
-            text-decoration: underline;
+            background-color: #acdfd7;
         }
         .content {
             margin-top: 60px; /* Space for fixed header */
             padding: 20px;
         }
         h3 {
-            color: green
+            background: rgba(0, 174, 255, 0.1);
+            font-family: "Trirong", serif;
+            color: rgb(0, 0, 0)
+            
         }
+        .gas {
+            border-style: groove solid;
+            text-align:center;
+            border-radius: 8px;
+            outline: #8bedb18d solid 2px;
+        }
+        .button {
+            background-color: #468ed1;
+            border: 1px solid rgb(255, 255, 255);
+            border-radius: .5rem;
+            color: #ffffff;
+            font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-size: .875rem;
+            font-weight: 600;
+            line-height: 1.25rem;
+            padding: .75rem 1rem;
+            text-align: center;
+            -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            position:relative;
+            top: 50px;
+}
+
+button:hover {
+  background-color: #f9fafb;
+}
+
+.button:focus {
+  outline: 2px solid rgba(0,0,0,0.1);
+  outline-offset: 2px;
+}
+
+.button:focus-visible {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
     </style>
+     
 </head>
 <body>
     <div class="header">
@@ -43,7 +91,7 @@
         <a href="{% url 'logout' %}">Logout</a>
     </div>
     <div class="content">
-        <h3>>Welcome to My Savings App</h3>
+        <h3 class="gas">$$ Welcome to My Savings App $$</h3>
         <a href="{% url 'manage_savings_goal' %}" class="button">Create Savings Goal</a>
         <!-- Page content goes here -->
     </div>
